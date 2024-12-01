@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: #333;
+  padding: 10px 20px;
+  z-index: 1000;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00bcd4;
+}
+
+/* Section Styles */
+.section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+#home {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+}
+
+#about {
+  background: #f4f4f4;
+}
+
+#projects {
+  background: #ddd;
+}
+
+.project-card {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 10px 0;
+  max-width: 300px;
+  text-align: left;
+}
+
+#contact {
+  background: #333;
+  color: white;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background: #222;
+  color: white;
+}
+
+/* Transitions */
+.section h1, .section h2 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.section.visible h1, .section.visible h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
