@@ -27,10 +27,20 @@ sections.forEach(section => {
 
 // Modal Functions
 function openModal(id) {
-  document.getElementById(id).style.display = 'flex';
+  const modal = document.getElementById(id);
+  modal.style.display = 'flex';
+
+// Close modal on clicking outside content
+modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      closeModal(id);
+    }
+  });
+
+  function closeModal(id) {
+  const modal = document.getElementById(id);
+  modal.style.display = 'none';
 }
 
-function closeModal(id) {
-  document.getElementById(id).style.display = 'none';
 }
 
