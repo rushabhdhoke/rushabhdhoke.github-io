@@ -20,68 +20,113 @@
 
   <main>
     <section id="home" class="section">
-      <h1>Hi, I'm Rushabh Dhoke</h1>
-      <p>MSc Robotics, Automation and Mechatronics student @ University of Delaware</p>
-      <p>Welcome to my portfolio website.</p>
+      <div class="content">
+        <h1>Hi, I'm Rushabh Dhoke</h1>
+        <p>MSc Robotics, Automation and Mechatronics student @ University of Delaware</p>
+        <p>Welcome to my portfolio website.</p>
+      </div>
     </section>
 
     <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>I am a passionate and dynamic professional with a solid foundation in Mechanical Engineering and a growing expertise in Automation, Robotics, and Mechatronics. My journey is driven by a fascination for innovation at the intersection of hardware, software, and AI/ML. With hands-on experience in CAD, Additive Manufacturing, and Simulation, I specialize in designing and developing intelligent robotic systems that push the boundaries of technology. I thrive on solving complex problems, integrating diverse disciplines, and leading collaborative projects that deliver impactful results. Whether it's prototyping autonomous vehicles, optimizing industrial processes, or pioneering smart system solutions, I am dedicated to creating meaningful change through cutting-edge engineering.</p>
+      <div class="content">
+        <h2>About Me</h2>
+        <p>I am a passionate and dynamic professional with a solid foundation in Mechanical Engineering and a growing expertise in Automation, Robotics, and Mechatronics. My journey is driven by a fascination for innovation at the intersection of hardware, software, and AI/ML. With hands-on experience in CAD, Additive Manufacturing, and Simulation, I specialize in designing and developing intelligent robotic systems that push the boundaries of technology. I thrive on solving complex problems, integrating diverse disciplines, and leading collaborative projects that deliver impactful results. Whether it's prototyping autonomous vehicles, optimizing industrial processes, or pioneering smart system solutions, I am dedicated to creating meaningful change through cutting-edge engineering.</p>
+      </div>
     </section>
 
     <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div class="project-card">
-        <h3>Underwater Gesture Detection</h3>
-        <p>Developing a an AI-based model for recognizing Scuba Divers’ Sign Language to facilitate
-underwater human-robot collaboration with (AUVs). Leveraging FastAI and ResNet-50, a pre-trained convolutional neural
-network, to create a deep learning model. Exploring opportunities for integrating the AI model with AUV control systems</p>
+      <div class="content">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card" onclick="openModal('project1')">
+            <h3>Underwater Gesture Detection</h3>
+          </div>
+          <div class="project-card" onclick="openModal('project2')">
+            <h3>Control of an Active Knee Orthosis</h3>
+          </div>
+          <div class="project-card" onclick="openModal('project3')">
+            <h3>Underwater Oyster Detection with AUV</h3>
+          </div>
+          <div class="project-card" onclick="openModal('project4')">
+            <h3>Fake News Detection Using ML</h3>
+          </div>
+          <div class="project-card" onclick="openModal('project5')">
+            <h3>KUKA LBR iiwa Robot Control</h3>
+          </div>
+        </div>
       </div>
-      
-      <div class="project-card">
-        <h3>Control of an Active Knee Orthosis</h3>
-        <p>Replicated the Paper “Wilian M, et. al. Design and Control of an active knee
-orthosis driven by RSEA” in Simulation using Matlab Simulink, and Circuit design using EasyEDA. Developed new
-controller and obtained 87% accuracy.</p>
-      </div>
-
-      <div class="project-card"> 
-        <h3>Underwater Oyster Detection with AUV</h3>
-        <p>Working with researchers from University of Maryland and Marine science
-Department towards a paper in Frontier Publication using BlueROV and AQUA2 AUV utilizing YOLOv5. Utilized Roboflow
-for annotations and classification, contributed in data analysis using obtained results for understanding results and
-collaborated with AI team on YOLO model training.</p>
-      </div>
-      
-      <div class="project-card"> 
-        <h3>Fake News Detection Using ML</h3>
-        <p>Developed a robust Machine Learning model to detect and classify fake news, leveraging
-key algorithms such as Linear Regression, Support Vector Machine, and Random Forest. Utilized Natural Language
-Processing techniques like tokenization, stop-word removal, and TF-IDF vectorization. Fine-tuned hyper-parameters of the
-SVM and Random Forest models using Grid Search and Cross-Validation, achieving an optimized balance between bias and
-variance.</p>
-      </div>
-
-       <div class="project-card"> 
-        <h3>KUKA LBR iiwa Robot Control</h3>
-        <p>Developed a MATLAB-based control for the KUKA robot using Robotics System Toolbox. Derived DH Parameters for trajectory planning integrating obstacle avoidance and Aruco marker detection for precise navigation and manipulation.</p>
-      </div>
-
-      
-      
     </section>
 
     <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>Email: rsd@udel.edu</p>
-      <p>Ph: 3026073840</p>
+      <div class="content">
+        <h2>Contact</h2>
+        <p>Email: rsd@udel.edu</p>
+        <p>Ph: 3026073840</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2024 [Your Name]. All Rights Reserved.</p>
+    <p>© 2024 Rushabh Dhoke. All Rights Reserved.</p>
   </footer>
+
+  <!-- Popup Modals -->
+  <div id="project1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('project1')">&times;</span>
+      <h3>Underwater Gesture Detection</h3>
+      <p>Developing a an AI-based model for recognizing Scuba Divers’ Sign Language to facilitate
+underwater human-robot collaboration with (AUVs). Leveraging FastAI and ResNet-50, a pre-trained convolutional neural
+network, to create a deep learning model. Exploring opportunities for integrating the AI model with AUV control systems. </p>
+      <img src="https://www.researchgate.net/publication/326756743/figure/fig7/AS:655057469071360@1533189279065/Detected-gestures-from-the-top-left-clockwise-take-a-photo-carry-equipment-start.png" alt="Project GIF">
+    </div>
+  </div>
+
+  <div id="project2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('project2')">&times;</span>
+      <h3>Control of an Active Knee Orthosis</h3>
+      <p>Replicated the Paper “Wilian M, et. al. Design and Control of an active knee
+orthosis driven by RSEA” in Simulation using Matlab Simulink, and Circuit design using EasyEDA. Developed new
+controller and obtained 87% accuracy.</p>
+      <img src="https://ars.els-cdn.com/content/image/1-s2.0-S0967066115300198-gr8.jpg" alt="Project GIF">
+    </div>
+  </div>
+
+  <div id="project3" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('project3')">&times;</span>
+      <h3>Underwater Oyster Detection with AUV</h3>
+      <p>Working with researchers from University of Maryland and Marine science
+Department towards a paper in Frontier Publication using BlueROV and AQUA2 AUV utilizing YOLOv5. Utilized Roboflow
+for annotations and classification, contributed in data analysis using obtained results for understanding results and
+collaborated with AI team on YOLO model training.</p>
+      <img src="https://scx1.b-cdn.net/csz/news/800a/2024/restored-oyster-sanctu.jpg" alt="Project GIF">
+    </div>
+  </div>
+
+  <div id="project4" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('project4')">&times;</span>
+      <h3>Fake News Detection Using ML</h3>
+      <p>Developed a robust Machine Learning model to detect and classify fake news, leveraging
+key algorithms such as Linear Regression, Support Vector Machine, and Random Forest. Utilized Natural Language
+Processing techniques like tokenization, stop-word removal, and TF-IDF vectorization. Fine-tuned hyper-parameters of the
+SVM and Random Forest models using Grid Search and Cross-Validation, achieving an optimized balance between bias and
+variance.</p>
+      <img src="https://figures.semanticscholar.org/abf727df63e86d800a2ce4f865b14bbf9ed74cae/4-Figure1-1.png" alt="Project GIF">
+    </div>
+  </div>
+
+  <div id="project5" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('project5')">&times;</span>
+      <h3>KUKA LBR iiwa Robot Control</h3>
+      <p>Developed a MATLAB-based control for the KUKA robot using Robotics System Toolbox. Derived DH Parameters for trajectory planning integrating obstacle avoidance and Aruco marker detection for precise navigation and manipulation.</p>
+      <img src="https://img-blog.csdnimg.cn/img_convert/db4ca132394a7f71fc6383bb52d3d4d1.png" alt="Project GIF">
+    </div>
+  </div>
+  
 
   <script src="script.js"></script>
 </body>
