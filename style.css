@@ -83,6 +83,21 @@ header {
   transform: scale(1.1);
 }
 
+
+/* Fade-in Animation */
+@keyframes fadeIn{
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+
 /* Modal Styles */
 .modal {
   display: none;
