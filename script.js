@@ -29,18 +29,19 @@ sections.forEach(section => {
 function openModal(id) {
   const modal = document.getElementById(id);
   modal.style.display = 'flex';
-
-// Close modal on clicking outside content
-modal.addEventListener('click', function (e) {
-    if (e.target === modal) {
-      closeModal(id);
-    }
-  });
-
-  function closeModal(id) {
+}
+function closeModal(id) {
   const modal = document.getElementById(id);
   modal.style.display = 'none';
-}
+} 
 
-}
+// Close modal on clicking outside content
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+});
+
 
