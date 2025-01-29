@@ -1,28 +1,28 @@
-// Smooth Scroll
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
+// Auto-scroll to next section on scroll
+let isScrolling = false;
 
-// Scroll Animation with Fade
-const sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  if (isScrolling) return;
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    } else {
-      entry.target.classList.remove('visible');
+  const sections = document.querySelectorAll('.section');
+  let currentSection = '';
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    if (window.scrollY >= sectionTop - sectionHeight / 2) {
+      currentSection = section.id;
     }
   });
-}, { threshold: 0.5 });
 
-sections.forEach(section => {
-  observer.observe(section);
+  const nextSection = document.querySelector(`#${currentSection}`).nextElementSibling;
+  if (nextSection && nextSection.classList.contains('section')) {
+    isScrolling = true;
+    nextSection.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      isScrolling = false;
+    }, 1000); // Adjust timeout to match scroll duration
+  }
 });
 
 // Modal Functions
