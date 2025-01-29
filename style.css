@@ -42,20 +42,34 @@ header {
   background-position: center;
 }
 
-#home {
-  background-image: url('https://img.freepik.com/premium-photo/cute-blue-robot-standing-against-turquoise-background-with-minimalist-design-represents-futuristic-technology-playful-design_210545-17834.jpg?w=996');
+#dynamic-text {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-#about {
-  background-image: url('https://img.freepik.com/free-photo/blue-blank-notepad-with-copy-space_23-2148475334.jpg?t=st=1735933035~exp=1735936635~hmac=bcd1187aefc466cd742999a96cb98aab7a14e339b0a6ecfbc63b7e0946ea5a3a&w=996');
+#expertise {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
-#projects {
-  background-image: url('https://img.freepik.com/premium-photo/dark-mode-mockup-with-blank-space-placing-your-design_1108314-507634.jpg');
+#contact-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
-#contact {
-  background-image: url('https://img.freepik.com/free-photo/vintage-pink-telephone-composition_23-2148913955.jpg?t=st=1735933516~exp=1735937116~hmac=c939b5b99e0f5115ba53c05834a6d413f1122bb0cb3b2e02f539928052b6d64f&w=996');
+#contact-links a {
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+#contact-links a:hover {
+  background: #fff;
+  color: #000;
 }
 
 .section .content {
@@ -106,7 +120,7 @@ header {
   text-align: center;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease-in-out;
+  animation: slideIn 0.3s ease-in-out;
 }
 
 .modal-content img {
@@ -130,14 +144,16 @@ header {
 }
 
 /* Fade-in Animation */
-@keyframes fadeIn{
+@keyframes slideIn {
   from {
+    transform: translateY(-20px);
     opacity: 0;
-    transform: scale(0.95);
   }
   to {
+    transform: translateY(0);
     opacity: 1;
-    transform: scale(1);
   }
 }
+
+
 
