@@ -44,4 +44,22 @@ document.querySelectorAll('.modal').forEach(modal => {
   });
 });
 
+// Dynamic Text Animation
+const dynamicText = document.getElementById('dynamic-text');
+const expertise = [
+  "Mechatronics Engineer",
+  "Robotics Engineer",
+  "AI/ML Enthusiast",
+  "Innovator"
+];
+let index = 0;
 
+function updateText() {
+  dynamicText.textContent = expertise[index];
+  index = (index + 1) % expertise.length;
+}
+
+setTimeout(() => {
+  dynamicText.textContent = expertise[0];
+  setInterval(updateText, 3000); // Change text every 3 seconds
+}, 2000); // Wait 2 seconds before starting
