@@ -41,8 +41,8 @@ header {
   background-attachment: fixed;
   background-position: center;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  opacity: 1; /* Force visibility */
-  transform: none;
+  /*opacity: 1;  Force visibility */
+  /*transform: none;*/
 }
 
 #dynamic-text {
