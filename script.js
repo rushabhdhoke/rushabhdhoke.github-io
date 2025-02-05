@@ -1,6 +1,23 @@
 // Auto-scroll to next section on scroll
 let isScrolling = false;
 
+// Throttle function to limit scroll event frequency
+function throttle(func, limit) {
+  let inThrottle;
+  return function () {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+
+
+
+
 window.addEventListener('scroll', () => {
   if (isScrolling) return;
 
@@ -11,7 +28,7 @@ window.addEventListener('scroll', () => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
     if (window.scrollY >= sectionTop - sectionHeight / 3) {
-      currentSection = section.id;
+      currentSection = section;
     }
   });
 
@@ -36,7 +53,7 @@ window.addEventListener('scroll', () => {
       isScrolling = false;
     }, 1000); // Adjust timeout to match scroll duration
   }
-});
+}, 100));
 
 
 // Modal Functions
