@@ -10,20 +10,34 @@ window.addEventListener('scroll', () => {
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
-    if (window.scrollY >= sectionTop - sectionHeight / 2) {
+    if (window.scrollY >= sectionTop - sectionHeight / 3) {
       currentSection = section.id;
     }
   });
 
-  const nextSection = document.querySelector(`#${currentSection}`).nextElementSibling;
-  if (nextSection && nextSection.classList.contains('section')) {
+  const scrollDirection = window.scrollY > (window.lastScrollY || 0) ? 'down' : 'up';
+  window.lastScrollY = window.scrollY;
+
+  
+  let targetSection = null;
+  if (scrollDirection === 'down' && currentSection.nextElementSibling) {
+    targetSection = currentSection.nextElementSibling;
+  } else if (scrollDirection === 'up' && currentSection.previousElementSibling) {
+    targetSection = currentSection.previousElementSibling;
+  }
+
+  // Smoothly scroll to the target section
+  if (targetSection && targetSection.classList.contains('section')) {
     isScrolling = true;
-    nextSection.scrollIntoView({ behavior: 'smooth' });
+    targetSection.scrollIntoView({ behavior: 'smooth' });
+
+    // Reset the scrolling flag after the scroll animation completes
     setTimeout(() => {
       isScrolling = false;
     }, 1000); // Adjust timeout to match scroll duration
   }
 });
+
 
 // Modal Functions
 function openModal(id) {
