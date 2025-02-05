@@ -1,12 +1,14 @@
-// Auto-scroll to next section on scroll
+// ------------------
+// Scroll Controller
+// ------------------
 let isScrolling = false;
+let lastScrollY = window.scrollY;
 
-// Throttle function to limit scroll event frequency
 function throttle(func, limit) {
   let inThrottle;
-  return function () {
-    const args = arguments;
+  return function() {
     const context = this;
+    const args = arguments;
     if (!inThrottle) {
       func.apply(context, args);
       inThrottle = true;
@@ -15,82 +17,79 @@ function throttle(func, limit) {
   };
 }
 
-
-
-
-window.addEventListener('scroll', () => {
+function handleScroll() {
   if (isScrolling) return;
 
-  const sections = document.querySelectorAll('.section');
-  let currentSection = '';
+  const sections = Array.from(document.querySelectorAll('.section'));
+  const scrollDirection = window.scrollY > lastScrollY ? 'down' : 'up';
+  lastScrollY = window.scrollY;
 
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    if (window.scrollY >= sectionTop - sectionHeight / 3) {
-      currentSection = section;
-    }
+  const currentSection = sections.find(section => {
+    const rect = section.getBoundingClientRect();
+    return rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
   });
 
-  const scrollDirection = window.scrollY > (window.lastScrollY || 0) ? 'down' : 'up';
-  window.lastScrollY = window.scrollY;
+  if (!currentSection) return;
 
-  
-  let targetSection = null;
-  if (scrollDirection === 'down' && currentSection.nextElementSibling) {
-    targetSection = currentSection.nextElementSibling;
-  } else if (scrollDirection === 'up' && currentSection.previousElementSibling) {
-    targetSection = currentSection.previousElementSibling;
-  }
+  const targetSection = scrollDirection === 'down' 
+    ? currentSection.nextElementSibling 
+    : currentSection.previousElementSibling;
 
-  // Smoothly scroll to the target section
   if (targetSection && targetSection.classList.contains('section')) {
     isScrolling = true;
     targetSection.scrollIntoView({ behavior: 'smooth' });
-
-    // Reset the scrolling flag after the scroll animation completes
-    setTimeout(() => {
-      isScrolling = false;
-    }, 1000); // Adjust timeout to match scroll duration
+    setTimeout(() => (isScrolling = false), 1000);
   }
-}, 100));
-
-
-// Modal Functions
-function openModal(id) {
-  const modal = document.getElementById(id);
-  modal.style.display = 'flex';
 }
-function closeModal(id) {
-  const modal = document.getElementById(id);
-  modal.style.display = 'none';
-} 
 
-// Close modal on clicking outside content
+window.addEventListener('scroll', throttle(handleScroll, 100));
+
+// ------------------
+// Modal Controller
+// ------------------
+const modalController = {
+  open: (id) => {
+    const modal = document.getElementById(id);
+    if (modal) modal.style.display = 'flex';
+  },
+  close: (id) => {
+    const modal = document.getElementById(id);
+    if (modal) modal.style.display = 'none';
+  }
+};
+
 document.querySelectorAll('.modal').forEach(modal => {
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modalController.close(modal.id);
   });
 });
 
-// Dynamic Text Animation
-const dynamicText = document.getElementById('dynamic-text');
-const expertise = [
-  "Mechatronics Engineer",
-  "Robotics Engineer",
-  "AI/ML Enthusiast",
-  "Innovator"
-];
-let index = 0;
+// ------------------
+// Text Animation
+// ------------------
+const textAnimator = {
+  init: () => {
+    this.dynamicText = document.getElementById('dynamic-text');
+    this.expertise = [
+      "Mechatronics Engineer",
+      "Robotics Engineer",
+      "AI/ML Enthusiast",
+      "Innovator"
+    ];
+    this.index = 0;
+    setTimeout(textAnimator.startAnimation, 2000);
+  },
+  startAnimation: () => {
+    textAnimator.dynamicText.textContent = textAnimator.expertise[0];
+    setInterval(textAnimator.updateText, 3000);
+  },
+  updateText: () => {
+    textAnimator.index = (textAnimator.index + 1) % textAnimator.expertise.length;
+    textAnimator.dynamicText.textContent = textAnimator.expertise[textAnimator.index];
+  }
+};
 
-function updateText() {
-  dynamicText.textContent = expertise[index];
-  index = (index + 1) % expertise.length;
-}
-
-setTimeout(() => {
-  dynamicText.textContent = expertise[0];
-  setInterval(updateText, 3000); // Change text every 3 seconds
-}, 2000); // Wait 2 seconds before starting
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+  textAnimator.init();
+});
